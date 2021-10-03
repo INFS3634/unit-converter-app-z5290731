@@ -4,13 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
+
+    ArrayAdapter<String> convertAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,25 +28,140 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.units, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         Spinner SConvertFromSpinner = findViewById(R.id.convertFromSpinner);
         Spinner SConvertToSpinner = findViewById(R.id.convertToSpinner);
 
-        System.out.println(SConvertFromSpinner);
-        System.out.println(adapter);
+        EditText editText = findViewById(R.id.convertFromValue);
+        Button button = findViewById(R.id.button);
 
-        SConvertFromSpinner.setAdapter(adapter);
+        //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.length_units, android.R.layout.simple_spinner_item);
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        //SConvertFromSpinner.setAdapter(adapter);
+        //SConvertToSpinner.setAdapter(adapter);
+
+        // CORE LENGTH //
+        Spinner SMetricSpinner = findViewById(R.id.InitialMetricSpinner);
+        TextView toEditErrorText = (TextView) findViewById(R.id.textView2);
+
+        ArrayList<String> arrayList_metricSpinner,arrayList_LengthSpinner, arrayList_MassSpinner, arrayList_VolumeSpinner, arrayList_EmptySpinner;
+
+        arrayList_LengthSpinner = new ArrayList<>();
+        arrayList_MassSpinner = new ArrayList<>();
+        arrayList_VolumeSpinner = new ArrayList<>();
+        arrayList_EmptySpinner = new ArrayList<>();
+
+        arrayList_EmptySpinner.add(" ");
+
+        arrayList_LengthSpinner.add("Centimetre");
+        arrayList_LengthSpinner.add("Foot");
+        arrayList_LengthSpinner.add("Inch");
+        arrayList_LengthSpinner.add("Kilometre");
+        arrayList_LengthSpinner.add("Metre");
+        arrayList_LengthSpinner.add("Mile");
+        arrayList_LengthSpinner.add("Millimetre");
+        arrayList_LengthSpinner.add("Yard");
+
+        arrayList_MassSpinner.add("Gram");
+        arrayList_MassSpinner.add("Kilogram");
+        arrayList_MassSpinner.add("Ounce");
+        arrayList_MassSpinner.add("Pound");
+        arrayList_MassSpinner.add("Stone");
+        arrayList_MassSpinner.add("Tonne");
+
+        arrayList_VolumeSpinner.add("Litre");
+        arrayList_VolumeSpinner.add("Millilitre");
+        arrayList_VolumeSpinner.add("Ounce");
+        arrayList_VolumeSpinner.add("US Gallon");
+        arrayList_VolumeSpinner.add("US Pint");
+
+
+
+        arrayList_metricSpinner = new ArrayList<>();
+
+        arrayList_metricSpinner.add("Select a Unit");
+        arrayList_metricSpinner.add("Length");
+        arrayList_metricSpinner.add("Mass");
+        arrayList_metricSpinner.add("Volume");
+
+        ArrayAdapter metricSpinnerAdapter = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,arrayList_metricSpinner);
+
+        SMetricSpinner.setAdapter(metricSpinnerAdapter);
+        System.out.println("Hello  " + metricSpinnerAdapter);
+
+        // CORE LENGTH //
+
+        // CORE LENGTH //
+
+        SMetricSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if(position==0) {
+
+                    convertAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_EmptySpinner);
+                    editText.setFocusable(false);
+                    toEditErrorText.setVisibility(View.VISIBLE);
+                    toEditErrorText.setText("Please select a Measurement! ");
+                    button.setClickable(false);
+                }
+
+                if(position==1) {
+
+                    convertAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_LengthSpinner);
+                    editText.setFocusable(true);
+                    toEditErrorText.setVisibility(View.INVISIBLE);
+                    button.setClickable(true);
+
+
+                }
+
+                if(position==2) {
+
+                    convertAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_MassSpinner);
+                    editText.setFocusable(true);
+                    toEditErrorText.setVisibility(View.INVISIBLE);
+                    button.setClickable(true);
+                }
+
+                if(position==3) {
+
+                    convertAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_VolumeSpinner);
+                    editText.setFocusable(true);
+                    toEditErrorText.setVisibility(View.INVISIBLE);
+                    button.setClickable(true);
+                }
+
+                SConvertFromSpinner.setAdapter(convertAdapter);
+                SConvertToSpinner.setAdapter(convertAdapter);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
         System.out.println(SConvertFromSpinner);
-        SConvertToSpinner.setAdapter(adapter);
+        //System.out.println(adapter);
+
+
 
 
 
 
     }
 
+    public void HelpAbout(View view) {
+        Intent intent = new Intent(this, HelpAbout.class);
+        startActivity(intent);
+    }
+
     public void convert(View view) {
+
+
         Spinner TconvertFromSpinner;
         Spinner TconvertToSpinner;
         EditText TconvertFromText;
@@ -48,39 +172,44 @@ public class MainActivity extends AppCompatActivity {
         TconvertFromText = (EditText) findViewById(R.id.convertFromValue);
         toEditText = (TextView) findViewById(R.id.textView2);
 
-        String convertFromString = (String) TconvertFromSpinner.getSelectedItem();
-        String convertToString = (String) TconvertToSpinner.getSelectedItem();
-        double input = Double.valueOf(TconvertFromText.getText().toString());
+        if (TconvertFromText.length()==0) {
+            System.out.println("Select a proper value - SETTEXT FOR TEXTVIEW LATER");
+            toEditText.setVisibility(View.VISIBLE);
+            toEditText.setText("Please Enter a Value! ");
 
-        Converter.Unit fromUnit = Converter.Unit.converterString(convertFromString);
-        Converter.Unit toUnit = Converter.Unit.converterString(convertToString);
+        } else {
 
-        /**CHANGE NAMES**/
-
-        Converter converter = new Converter(fromUnit, toUnit);
-        double result = converter.convert(input);
-        String resultConvert =(String.valueOf(result));
-        String inputConvert = (String.valueOf(input));
-        //System.out.println(result);
-        //toEditText.setText(String.valueOf(result));
-
-        System.out.println(input + resultConvert + convertToString + convertFromString);
-
-        Intent intent = new Intent(this,ConvertedActivity.class);
-        intent.putExtra("INPUTTED_VALUE", inputConvert);
-        intent.putExtra("CONVERTED_VALUE", resultConvert);
-        intent.putExtra("CONVERTTO_STRING", convertToString);
-        intent.putExtra("CONVERTFROM_STRING", convertFromString);
+            String convertFromString = (String) TconvertFromSpinner.getSelectedItem();
+            String convertToString = (String) TconvertToSpinner.getSelectedItem();
+            double input = Double.valueOf(TconvertFromText.getText().toString());
 
 
-        System.out.println(intent);
-        startActivity(intent);
+            Converter.Unit fromUnit = Converter.Unit.converterString(convertFromString);
+            Converter.Unit toUnit = Converter.Unit.converterString(convertToString);
+
+            /**CHANGE NAMES**/
+
+            Converter converter = new Converter(fromUnit, toUnit);
+            double result = converter.convert(input);
+            String resultConvert =(String.valueOf(result));
+            String inputConvert = (String.valueOf(input));
+            //System.out.println(result);
+            //toEditText.setText(String.valueOf(result));
+
+            System.out.println(input + resultConvert + convertToString + convertFromString);
+
+            Intent intent = new Intent(this,ConvertedActivity.class);
+            intent.putExtra("INPUTTED_VALUE", inputConvert);
+            intent.putExtra("CONVERTED_VALUE", resultConvert);
+            intent.putExtra("CONVERTTO_STRING", convertToString);
+            intent.putExtra("CONVERTFROM_STRING", convertFromString);
 
 
+            System.out.println(intent);
+            startActivity(intent);
 
 
-
-
+        }
 
 
     }

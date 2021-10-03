@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <Spinner
+        android:id="@+id/InitialMetricSpinner"
+        android:layout_width="221dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/convertFromSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.587" />
+
     <EditText
         android:id="@+id/convertFromValue"
         android:layout_width="wrap_content"
@@ -17,13 +29,13 @@
         app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/convertFromSpinner"
-        app:layout_constraintVertical_bias="0.064" />
+        app:layout_constraintVertical_bias="0.071" />
 
     <Spinner
         android:id="@+id/convertFromSpinner"
         android:layout_width="176dp"
         android:layout_height="27dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="156dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.068"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,8 +53,8 @@
 
     <Spinner
         android:id="@+id/convertToSpinner"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
+        android:layout_width="292dp"
+        android:layout_height="59dp"
         android:layout_marginTop="72dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,5 +81,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />
+
+    <Button
+        android:id="@+id/button2"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:onClick="HelpAbout"
+        app:icon="@android:drawable/ic_menu_help"
+        app:iconPadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.996"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

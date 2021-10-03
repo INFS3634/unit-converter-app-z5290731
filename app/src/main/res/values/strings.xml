@@ -16,7 +16,7 @@
         <item>Yard (YD)</item>
     </string-array>
 
-    <string-array name="units">
+    <string-array name="length_units">
         <item>Centimetre</item>
         <item>Foot</item>
         <item>Inch</item>
@@ -26,5 +26,17 @@
         <item>Millimetre</item>
         <item>Yard</item>
     </string-array>
+
+    <string-array name="mass_units">
+        <item>Centimetre</item>
+        <item>Foot</item>
+        <item>Inch</item>
+        <item>Kilometre</item>
+        <item>Metre</item>
+        <item>Mile</item>
+        <item>Millimetre</item>
+        <item>Yard</item>
+    </string-array>
+
 
 </resources>
