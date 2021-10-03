@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">Unit Converter</string>
+
+    <string name="button">CONVERT</string>
+
+    <string name="textConvert">CONVERT TO</string>
+
+    <string-array name="unit">
+        <item>Centimetre (CM)</item>
+        <item>Foot (FT)</item>
+        <item>Inch (IN)</item>
+        <item>Kilometre (KM)</item>
+        <item>Metre (M)</item>
+        <item>Mile (MI)</item>
+        <item>Millimetre (MM)</item>
+        <item>Yard (YD)</item>
+    </string-array>
+
+    <string-array name="units">
+        <item>Centimetre</item>
+        <item>Foot</item>
+        <item>Inch</item>
+        <item>Kilometre</item>
+        <item>Metre</item>
+        <item>Mile</item>
+        <item>Millimetre</item>
+        <item>Yard</item>
+    </string-array>
+
 </resources>
