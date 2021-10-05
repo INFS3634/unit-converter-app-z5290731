@@ -5,6 +5,12 @@
 
     <string name="textConvert">CONVERT TO</string>
 
+    <string name="textConvertA">Tap to enter a value</string>
+
+    <string name="textConvertB">Tap to select a conversion unit</string>
+
+    <string name="textConvertC">Tap to select a measurement type</string>
+
     <string-array name="unit">
         <item>Centimetre (CM)</item>
         <item>Foot (FT)</item>

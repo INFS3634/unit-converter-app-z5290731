@@ -40,9 +40,9 @@ public class ConvertedActivity extends AppCompatActivity {
 
 
 
-        OV_TextView.setText(String.valueOf(convertedValue));
-        OU_TextView.setText(String.valueOf(originalValue));
-        CU_TextView.setText(String.valueOf(originalUnit));
+        OV_TextView.setText(String.valueOf(originalValue));
+        OU_TextView.setText(String.valueOf(originalUnit));
+        CU_TextView.setText(String.valueOf(convertedValue));
         CV_TextView.setText(String.valueOf(convertedUnit));
 
     }

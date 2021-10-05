@@ -2,10 +2,14 @@ package au.edu.unsw.infs3634.unitconverter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -93,6 +97,26 @@ public class MainActivity extends AppCompatActivity {
 
         // CORE LENGTH //
 
+        SConvertToSpinner.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                InputMethodManager imm=(InputMethodManager)getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+                return false;
+            }
+        }) ;
+
+        SConvertFromSpinner.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                InputMethodManager imm=(InputMethodManager)getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+                return false;
+            }
+        }) ;
+
         SMetricSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -100,16 +124,17 @@ public class MainActivity extends AppCompatActivity {
                 if(position==0) {
 
                     convertAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_EmptySpinner);
-                    editText.setFocusable(false);
+                    //editText.setFocusable(false);
                     toEditErrorText.setVisibility(View.VISIBLE);
                     toEditErrorText.setText("Please select a Measurement! ");
                     button.setClickable(false);
+                    editText.setTextColor(Color.GREEN);
                 }
 
                 if(position==1) {
 
                     convertAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_LengthSpinner);
-                    editText.setFocusable(true);
+                    //editText.setFocusable(false);
                     toEditErrorText.setVisibility(View.INVISIBLE);
                     button.setClickable(true);
 
@@ -119,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                 if(position==2) {
 
                     convertAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_MassSpinner);
-                    editText.setFocusable(true);
+                    //editText.setFocusable(true);
                     toEditErrorText.setVisibility(View.INVISIBLE);
                     button.setClickable(true);
                 }
@@ -127,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                 if(position==3) {
 
                     convertAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList_VolumeSpinner);
-                    editText.setFocusable(true);
+                    //editText.setFocusable(true);
                     toEditErrorText.setVisibility(View.INVISIBLE);
                     button.setClickable(true);
                 }
@@ -135,7 +160,10 @@ public class MainActivity extends AppCompatActivity {
                 SConvertFromSpinner.setAdapter(convertAdapter);
                 SConvertToSpinner.setAdapter(convertAdapter);
 
+
             }
+
+
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -153,6 +181,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 
     public void HelpAbout(View view) {
         Intent intent = new Intent(this, HelpAbout.class);
