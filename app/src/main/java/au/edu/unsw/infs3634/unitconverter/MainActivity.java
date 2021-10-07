@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -129,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
                     toEditErrorText.setText("Please select a Measurement! ");
                     button.setClickable(false);
                     editText.setTextColor(Color.GREEN);
+
                 }
 
                 if(position==1) {
@@ -189,6 +191,48 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onClick(View view) {
+
+        Spinner TconvertFromSpinner;
+        Spinner TconvertToSpinner;
+        EditText TconvertFromText;
+        TextView toEditText;
+
+        TconvertFromSpinner = (Spinner) findViewById(R.id.convertFromSpinner);
+        TconvertToSpinner = (Spinner) findViewById(R.id.convertToSpinner);
+        TconvertFromText = (EditText) findViewById(R.id.convertFromValue);
+        toEditText = (TextView) findViewById(R.id.textView2);
+
+        String convertFromString = (String) TconvertFromSpinner.getSelectedItem();
+        String convertToString = (String) TconvertToSpinner.getSelectedItem();
+        //double input = Double.valueOf(TconvertFromText.getText().toString());
+
+        int positionSpinner1 = TconvertFromSpinner.getSelectedItemPosition();
+        int positionSpinner2 = TconvertToSpinner.getSelectedItemPosition();
+
+        if (TconvertFromSpinner.getAdapter().equals(convertAdapter)) {
+            TconvertFromSpinner.setAdapter(convertAdapter);
+            TconvertToSpinner.setAdapter(convertAdapter);
+
+        } else {
+
+            TconvertFromSpinner.setAdapter(convertAdapter);
+            TconvertToSpinner.setAdapter(convertAdapter);
+
+        }
+        TconvertFromSpinner.setSelection(positionSpinner2);
+        TconvertToSpinner.setSelection(positionSpinner1);
+
+            //arrayList_LengthSpinner, arrayList_MassSpinner, arrayList_VolumeSpinner
+
+
+
+
+
+    }
+
+
+
     public void convert(View view) {
 
 
@@ -203,9 +247,11 @@ public class MainActivity extends AppCompatActivity {
         toEditText = (TextView) findViewById(R.id.textView2);
 
         if (TconvertFromText.length()==0) {
-            System.out.println("Select a proper value - SETTEXT FOR TEXTVIEW LATER");
-            toEditText.setVisibility(View.VISIBLE);
-            toEditText.setText("Please Enter a Value! ");
+
+            Toast.makeText(getApplicationContext(),
+                    "Please Enter a Value and Try Again!",
+                    Toast.LENGTH_LONG)
+                    .show();
 
         } else {
 

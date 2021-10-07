@@ -14,9 +14,16 @@
 
 
                     <stroke android:width="10px" android:color="#81d8cf" />
-                    <corners android:radius="8dp" />
+                    <corners android:radius="0dp" />
                 </shape>
             </item>
+
+            <item>
+                <bitmap
+                    android:gravity="center_vertical|right"
+                    android:src="@android:drawable/arrow_down_float"/>
+            </item>
+
 
 
         </layer-list>

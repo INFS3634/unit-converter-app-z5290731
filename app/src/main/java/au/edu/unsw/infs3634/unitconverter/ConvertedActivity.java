@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -45,6 +46,11 @@ public class ConvertedActivity extends AppCompatActivity {
         CU_TextView.setText(String.valueOf(convertedValue));
         CV_TextView.setText(String.valueOf(convertedUnit));
 
+    }
+
+    public void HelpAbout(View view) {
+        Intent intent = new Intent(this, HelpAbout.class);
+        startActivity(intent);
     }
 
 

@@ -3,6 +3,8 @@
 
     <string name="button">CONVERT</string>
 
+    <string name="button1">SWAP UNITS</string>
+
     <string name="textConvert">CONVERT TO</string>
 
     <string name="textConvertA">Tap to enter a value</string>
