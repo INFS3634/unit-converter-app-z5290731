@@ -76,9 +76,8 @@ public class MainActivity extends AppCompatActivity {
 
         arrayList_VolumeSpinner.add("Litre");
         arrayList_VolumeSpinner.add("Millilitre");
-        arrayList_VolumeSpinner.add("Ounce");
-        arrayList_VolumeSpinner.add("US Gallon");
-        arrayList_VolumeSpinner.add("US Pint");
+        arrayList_VolumeSpinner.add("Gallon");
+        arrayList_VolumeSpinner.add("Pint");
 
 
 
@@ -118,6 +117,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }) ;
 
+        /**
+         * Spinner that helps select the ArrayList based on the values of the Upper Level Measurement Spinner.
+         * If cases used with position to pass specific Adapter and to set buttons and different error handling values
+         */
+
         SMetricSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -129,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                     toEditErrorText.setVisibility(View.VISIBLE);
                     toEditErrorText.setText("Please select a Measurement! ");
                     button.setClickable(false);
-                    editText.setTextColor(Color.GREEN);
+                    //editText.setTextColor(Color.GREEN);
 
                 }
 
@@ -173,6 +177,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * System.out.println utilised at different stages for debugging and error handling from a backend side
+         */
+
 
         System.out.println(SConvertFromSpinner);
         //System.out.println(adapter);
@@ -184,12 +192,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /** Passes
+     * through for different buttons
+     * @param view
+     */
+
 
 
     public void HelpAbout(View view) {
         Intent intent = new Intent(this, HelpAbout.class);
         startActivity(intent);
     }
+
+    /**
+     * The OnClick method to help ensure that the switch button between spinners work
+     * @param view
+     */
 
     public void onClick(View view) {
 
@@ -231,6 +249,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Button method to help convert to String, Convert the values by passing through to the
+     * Converter Class and then utilising Bundles to pass data through in a simplified manner
+     * @param view
+     */
 
 
     public void convert(View view) {
@@ -263,7 +286,6 @@ public class MainActivity extends AppCompatActivity {
             Converter.Unit fromUnit = Converter.Unit.converterString(convertFromString);
             Converter.Unit toUnit = Converter.Unit.converterString(convertToString);
 
-            /**CHANGE NAMES**/
 
             Converter converter = new Converter(fromUnit, toUnit);
             double result = converter.convert(input);

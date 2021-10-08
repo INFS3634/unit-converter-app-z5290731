@@ -20,7 +20,7 @@ public class Converter {
         /**MASS**/GRAM,
         /**MASS**/KILOGRAM,
         /**MASS**/TONNE,
-        millilitre,
+        MILLILITRE,
         LITRE,
         PINT,
         GALLON;
@@ -39,6 +39,12 @@ public class Converter {
 
 
     }
+
+    /** Unit Converter App utilised the MVC Design Model, with a seperate controller/class for conversion of differing units.
+     *  Switch Cases used to help distinguish what units and which constantValue to use
+     *
+     **/
+
 
     private final double multiplier;
 
@@ -260,19 +266,47 @@ public class Converter {
                 } else System.out.println("Cannot Convert invalid Value");
                 break;
 
-            case TONNE:
-                if (convertTo == Unit.POUND) {
-                    constantValue = 2204.62;
-                } else if (convertTo == Unit.STONE) {
-                    constantValue = 157.473;
-                } else if (convertTo == Unit.GRAM) {
-                    constantValue = 1e+6;
-                } else if (convertTo == Unit.KILOGRAM) {
+            case LITRE:
+                if (convertTo == Unit.MILLILITRE) {
                     constantValue = 1000;
-                } else if (convertTo == Unit.OUNCE) {
-                    constantValue = 35274;
+                } else if (convertTo == Unit.GALLON) {
+                    constantValue = 0.264172;
+                } else if (convertTo == Unit.PINT) {
+                    constantValue = 2.11338;
                 } else System.out.println("Cannot Convert invalid Value");
                 break;
+
+            case MILLILITRE:
+                if (convertTo == Unit.LITRE) {
+                    constantValue = 0.001;
+                } else if (convertTo == Unit.GALLON) {
+                    constantValue = 0.000264172;
+                } else if (convertTo == Unit.PINT) {
+                    constantValue = 0.00211338;
+                } else System.out.println("Cannot Convert invalid Value");
+                break;
+
+            case GALLON:
+                if (convertTo == Unit.MILLILITRE) {
+                    constantValue = 3785.41;
+                } else if (convertTo == Unit.LITRE) {
+                    constantValue = 3.78541;
+                } else if (convertTo == Unit.PINT) {
+                    constantValue = 9.6076;
+                } else System.out.println("Cannot Convert invalid Value");
+                break;
+
+            case PINT:
+                if (convertTo == Unit.MILLILITRE) {
+                    constantValue = 473.176;
+                } else if (convertTo == Unit.GALLON) {
+                    constantValue = 0.150119;
+                } else if (convertTo == Unit.LITRE) {
+                    constantValue = 0.473176;
+                } else System.out.println("Cannot Convert invalid Value");
+                break;
+
+
         }
 
         multiplier = constantValue;

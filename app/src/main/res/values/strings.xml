@@ -5,6 +5,8 @@
 
     <string name="button1">SWAP UNITS</string>
 
+    <string name="button4">NEW UNIT CONVERSION</string>
+
     <string name="textConvert">CONVERT TO</string>
 
     <string name="textConvertA">Tap to enter a value</string>

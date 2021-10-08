@@ -12,7 +12,7 @@ import org.w3c.dom.Text;
 public class ConvertedActivity extends AppCompatActivity {
 
 
-    private TextView OV_TextView,OU_TextView,CV_TextView,CU_TextView;
+    private TextView OV_TextView,OU_TextView,CV_TextView,CU_TextView, R_TextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +23,7 @@ public class ConvertedActivity extends AppCompatActivity {
         OU_TextView = (TextView) findViewById(R.id.originalUnit_TextView);
         CU_TextView = (TextView) findViewById(R.id.convertedUnit_TextView);
         CV_TextView = (TextView) findViewById(R.id.convertedValue_TextView);
+        R_TextView = (TextView) findViewById(R.id.textView8);
 
 
         Intent intent = getIntent();
@@ -45,11 +46,23 @@ public class ConvertedActivity extends AppCompatActivity {
         OU_TextView.setText(String.valueOf(originalUnit));
         CU_TextView.setText(String.valueOf(convertedValue));
         CV_TextView.setText(String.valueOf(convertedUnit));
+        R_TextView.setText(" " + originalValue + " " + originalUnit + "(s)" + " = "
+                + convertedValue + " " + convertedUnit + "(s)");
+
+        R_TextView.setVisibility(View.VISIBLE);
+
+
+
 
     }
 
     public void HelpAbout(View view) {
         Intent intent = new Intent(this, HelpAbout.class);
+        startActivity(intent);
+    }
+
+    public void home(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
