@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="au.edu.unsw.infs3634.unitconverter">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UnitConverter">
         <activity
+            android:name=".LoginActivity"
+            android:exported="true" >
+
+        <!--            we have copied this block of code <intent-filter> inside of code </intent-filter> over from MainActivity so Android knows to launch with this first-->
+
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
+        </activity>
+
+<!--        end block of code copied-->
+
+        <activity
             android:name=".HelpAbout"
             android:exported="true" />
         <activity
@@ -20,11 +36,8 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
     </application>
 
